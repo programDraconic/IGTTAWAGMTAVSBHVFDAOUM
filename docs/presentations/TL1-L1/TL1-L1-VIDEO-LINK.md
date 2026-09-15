@@ -1,0 +1,4 @@
+# Here is the link to the L1 Video:
+
+
+https://vandalsuidaho-my.sharepoint.com/:v:/g/personal/yaw8714_vandals_uidaho_edu/IQDzq6aldQ6WR7WH6pukIiCBAaPhHOBfoFimHRQVP5j5NHw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=r9g4Ws
