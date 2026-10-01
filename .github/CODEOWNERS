@@ -1,0 +1,44 @@
+# .github/CODEOWNERS - CS3383 Team
+# Each developer owns their respective directory across src, tst, prefabs, and docs.
+
+# --- Adam ---
+Assets/src/TL1-Adam/     @programDraconic
+Assets/tst/TL1-Adam/     @programDraconic
+Assets/prefabs/TL1-Adam/ @programDraconic
+docs/TL1-Adam/           @programDraconic
+
+# --- Gagan ---
+Assets/src/TL2-Gagan/     @gagandsv
+Assets/tst/TL2-Gagan/     @gagandsv
+Assets/prefabs/TL2-Gagan/ @gagandsv
+docs/TL2-Gagan/           @gagandsv
+
+# --- Hayden ---
+Assets/src/TL2-Hayden/     @HaydenGrizzle
+Assets/tst/TL2-Hayden/     @HaydenGrizzle
+Assets/prefabs/TL2-Hayden/ @HaydenGrizzle
+docs/TL2-Hayden/           @HaydenGrizzle
+
+# --- Shenghao ---
+Assets/src/TL3-Shenghao/     @shenghaozhu95-dot
+Assets/tst/TL3-Shenghao/     @shenghaozhu95-dot
+Assets/prefabs/TL3-Shenghao/ @shenghaozhu95-dot
+docs/TL3-Shenghao/           @shenghaozhu95-dot
+
+# --- Michael ---
+Assets/src/TL4-Michael/     @MichaelDLJones
+Assets/tst/TL4-Michael/     @MichaelDLJones
+Assets/prefabs/TL4-Michael/ @MichaelDLJones
+docs/TL4-Michael/           @MichaelDLJones
+
+# --- Wyatt ---
+Assets/src/TL5-Wyatt/     @wyattjrequa
+Assets/tst/TL5-Wyatt/     @wyattjrequa
+Assets/prefabs/TL5-Wyatt/ @wyattjrequa
+docs/TL5-Wyatt/           @wyattjrequa
+
+# --- Nishant ---
+Assets/src/TL6-Nishant/     @github_username_nishant
+Assets/tst/TL6-Nishant/     @github_username_nishant
+Assets/prefabs/TL6-Nishant/ @github_username_nishant
+docs/TL6-Nishant/           @github_username_nishant
