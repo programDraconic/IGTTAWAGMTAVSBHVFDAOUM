@@ -3,11 +3,11 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class BanddingTests
+public class BaseTest
 {
     // A Test behaves as an ordinary method
     [Test]
-    public void BaseTest()
+    public void BaseTestMember()
     {
         // Use the Assert class to test conditions
         Enemy_State baseline=new Enemy_State();
