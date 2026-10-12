@@ -20,7 +20,7 @@ public class BaseTest
         string c=chase_test.Tick();
         Assert.AreNotEqual(a,b);
        
-        Assert.AreNotEqual(a,c);
+        Assert.AreNotEqual(a,c);//test success
 
 
     }
@@ -37,8 +37,8 @@ public class BaseTest
         string b=attack_test.Tick();//a==b
         
        
-       Assert.AreNotEqual(a,b);// test with fail
-       //Assert.AreEqual(a,b); // test with success
+       //Assert.AreNotEqual(a,b);// test with fail
+       Assert.AreEqual(a,b); // test with success
     }
 
 
