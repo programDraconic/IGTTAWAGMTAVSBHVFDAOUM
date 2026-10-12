@@ -37,8 +37,8 @@ public class BaseTest
         string b=attack_test.Tick();//a==b
         
        
-       //Assert.AreNotEqual(a,b);// test with fail
-       Assert.AreEqual(a,b); // test with success
+       Assert.AreNotEqual(a,b);// test with fail
+       //Assert.AreEqual(a,b); // test with success
     }
 
 
