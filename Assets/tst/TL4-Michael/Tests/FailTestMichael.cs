@@ -1,13 +1,19 @@
 using NUnit.Framework;
 
-public class MichaelBindingTests
+public class FailTestMichael
 {
     [Test]
-    public void BaseRef_ToBase_NoBindingChange()
+    public void BaseRef_ToBase_NoOverride()
     {
-        Enemy baseline = new Enemy();
-        Enemy actual = new Enemy();
+        PlayerStats player = new PlayerStats();
+        Pickup baseline = new Pickup();
+        Pickup actual = new Pickup(); // No subclass, so no overridden behavior.
 
-        Assert.AreEqual(baseline.Attack(), actual.Attack());
+        string baseResult = baseline.Collect(player);
+        string actualResult = actual.Collect(player);
+
+        Assert.AreEqual(baseResult, actualResult);
+        Assert.AreEqual("Generic pickup collected", actualResult);
+        Assert.AreEqual(0, player.XP);
     }
 }
