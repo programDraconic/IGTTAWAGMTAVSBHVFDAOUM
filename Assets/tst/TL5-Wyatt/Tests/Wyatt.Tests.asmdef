@@ -6,7 +6,9 @@
         "UnityEditor.TestRunner",
         "Wyatt.Game"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
