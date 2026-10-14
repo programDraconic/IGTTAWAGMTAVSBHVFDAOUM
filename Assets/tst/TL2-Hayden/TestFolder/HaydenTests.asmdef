@@ -1,0 +1,18 @@
+{
+    "name": "HaydenTests",
+    "rootNamespace": "",
+    "references": [
+        "GUID:94197c5b570804ff6a79043b2d92aae5"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
