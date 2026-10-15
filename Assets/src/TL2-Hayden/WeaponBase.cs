@@ -4,6 +4,7 @@ public abstract class WeaponBase
 {
     protected WeaponData weaponData;
     protected int currentAmmo;
+    public bool HasAmmo => currentAmmo > 0;
 
     protected WeaponBase(WeaponData data)
     {
