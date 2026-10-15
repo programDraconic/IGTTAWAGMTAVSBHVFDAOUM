@@ -10,6 +10,7 @@ public class PistolInput : MonoBehaviour
     [SerializeField] private Transform muzzle;
     [SerializeField] private float projectileSpeed = 15f;
     [SerializeField] private ParticleSystem muzzleFlash;
+    [SerializeField] private Transform playerRoot;
 
     private PistolWeapon pistol;
 
@@ -70,6 +71,6 @@ public class PistolInput : MonoBehaviour
                 Physics2D.IgnoreCollision(bulletCollider, playerCollider);
         }
 
-        projectile.Launch(direction, projectileSpeed);
+        projectile.Launch(direction, projectileSpeed, playerRoot);
     }
 }
