@@ -196,3 +196,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   hitsToKill: 3
+  crystalPrefab: {fileID: 3790844724482328560, guid: f6da8248f7c262d4a91ec11cc9e9c010, type: 3}
