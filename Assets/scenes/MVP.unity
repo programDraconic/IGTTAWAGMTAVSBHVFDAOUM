@@ -704,6 +704,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &330514841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 330514843}
+  - component: {fileID: 330514842}
+  - component: {fileID: 330514844}
+  m_Layer: 0
+  m_Name: TL1-Empty-GameObject-StressRunner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &330514842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330514841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076ed70ff0fc9f34ca16e594cfd8dee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Adam.Game::StressDummy
+  speed: 2
+  radius: 3
+--- !u!4 &330514843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330514841}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 484.08813, y: 387.82855, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &330514844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330514841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f8b8e041aebe84ea18ba902525c531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Adam.Game::RunSessionRunner
+  countdownSeconds: 3
+  showDebugGui: 1
+  stressPrefab: {fileID: 0}
 --- !u!1 &567292097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,3 +1320,4 @@ SceneRoots:
   - {fileID: 127966786}
   - {fileID: 579371167}
   - {fileID: 567292099}
+  - {fileID: 330514843}

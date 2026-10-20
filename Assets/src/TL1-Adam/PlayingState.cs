@@ -2,6 +2,8 @@
 // and ticks every registered feature (weapons, enemies, summons...).
 public class PlayingState : RunState
 {
+    public override bool RunsSimulation { get { return true; } }
+
     public override bool HandlePause(RunSession session, PauseReason reason)
     {
         if (session == null) return false;
