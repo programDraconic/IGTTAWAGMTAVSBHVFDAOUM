@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/scenes/Tutorial.unity
     guid: d6b6d62cd60f54248bc4a547cb1b0f1f
+  - enabled: 1
+    path: Assets/scenes/MVP.unity
+    guid: 052339f0159fe4eb896070abf508a83f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

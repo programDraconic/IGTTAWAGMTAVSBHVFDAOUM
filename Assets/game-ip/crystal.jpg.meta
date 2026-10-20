@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 14731bc01b17a194fb5a84f4e87088b3
+guid: 89d8b886173994c53bf366518a21ec06
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7139649115705964116
-    second: H88p9DvgDaSi2oq6A9urgcSbH9IMtwmRocMh8HvzMUOcYtGZCI8iYkbmUlA12HueIGlvZdyVpwYk1HDQ9txQH49xTDv30i6Z6480AjxzJ9w3NfHr8wHHVH6rQtHbUa55I12Lg5mnYbZbd5erhQCp6O2IWYPK6ZYcS-kr8NYq5ynNeWNiOHHynOlx7cY1pG8k_0
+      213: 7479642271789056252
+    second: crystal_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: H88p9DvgDaSi2oq6A9urgcSbH9IMtwmRocMh8HvzMUOcYtGZCI8iYkbmUlA12HueIGlvZdyVpwYk1HDQ9txQH49xTDv30i6Z6480AjxzJ9w3NfHr8wHHVH6rQtHbUa55I12Lg5mnYbZbd5erhQCp6O2IWYPK6ZYcS-kr8NYq5ynNeWNiOHHynOlx7cY1pG8k_0
+      name: crystal_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 456f5921b01251360800000000000000
-      internalID: 7139649115705964116
+      spriteID: cf08bf074070dc760800000000000000
+      internalID: 7479642271789056252
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      H88p9DvgDaSi2oq6A9urgcSbH9IMtwmRocMh8HvzMUOcYtGZCI8iYkbmUlA12HueIGlvZdyVpwYk1HDQ9txQH49xTDv30i6Z6480AjxzJ9w3NfHr8wHHVH6rQtHbUa55I12Lg5mnYbZbd5erhQCp6O2IWYPK6ZYcS-kr8NYq5ynNeWNiOHHynOlx7cY1pG8k_0: 7139649115705964116
+      crystal_0: 7479642271789056252
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
