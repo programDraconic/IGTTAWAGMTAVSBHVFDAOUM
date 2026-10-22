@@ -21,7 +21,7 @@ public class DatingController
     {
         if (suitors.Count == 0)
         {
-            suitors.Add(new Husband());
+            suitors.Add(new VampireShrimp());
             suitors.Add(new Matriarch());
             suitors.Add(new Potential());
             suitors.Add(new Friend());

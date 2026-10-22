@@ -7,14 +7,17 @@ public class DatingMVP : MonoBehaviour
              "Left empty, it is loaded from Resources at run time.")]
     public GameObject suitorCardPrefab;
 
-    [Tooltip("Card size multiplier. Cards already scale with the Game view width; " +
-             "raise this if they are still too small. Also adjustable in Play mode.")]
+    [Tooltip("Card size multiplier. The card already scales with the Game view " +
+             "width; raise this if it is still too small. Also adjustable in Play mode.")]
     [Range(0.4f, 3f)]
     public float uiScale = 1f;
 
     private DatingController controller;
+    private Suitor[] suitors;
+    private GameObject card;
+    private SuitorView view;
+    private int current;
     private readonly List<string> unlockLog = new List<string>();
-    private readonly List<GameObject> spawned = new List<GameObject>();
 
     private void Start()
     {
@@ -23,6 +26,7 @@ public class DatingMVP : MonoBehaviour
         controller = new DatingController();
         controller.UnlockEarned += OnUnlockEarned;
         controller.EnterDatingPhase();
+        suitors = controller.GetSuitors();
 
         GameObject prefab = suitorCardPrefab != null
             ? suitorCardPrefab
@@ -35,13 +39,17 @@ public class DatingMVP : MonoBehaviour
             return;
         }
 
-        Suitor[] suitors = controller.GetSuitors();
-        for (int i = 0; i < suitors.Length; i++)
-        {
-            GameObject card = Instantiate(prefab, transform);
-            card.GetComponent<SuitorView>().Bind(suitors[i], i, controller);
-            spawned.Add(card);
-        }
+        card = Instantiate(prefab, transform);
+        view = card.GetComponent<SuitorView>();
+        ShowSuitor(0);
+    }
+
+    private void ShowSuitor(int index)
+    {
+        if (suitors == null || suitors.Length == 0 || view == null) return;
+        current = (index + suitors.Length) % suitors.Length;
+        controller.SelectSuitor(current);
+        view.Bind(suitors[current], current, controller);
     }
 
     private void OnUnlockEarned(RelationshipUnlock unlock)
@@ -52,15 +60,24 @@ public class DatingMVP : MonoBehaviour
 
     private void OnGUI()
     {
+        if (suitors == null || suitors.Length == 0) return;
+
         float s = DatingUi.Scale;
         float m = DatingUi.Margin;
+        float w = DatingUi.CardWidth;
+        float x = (Screen.width - w) * 0.5f;
 
         GUI.Label(new Rect(m, 14f * s, Screen.width - m * 2f, 28f * s),
-                  "TL5 / F6 - Dating System MVP   |   " + spawned.Count +
-                  " suitor cards instantiated from SuitorCard.prefab", DatingUi.Header);
-        GUI.Label(new Rect(m, 44f * s, Screen.width - m * 2f - 200f * s, 28f * s),
-                  "Gift a suitor, then Advance Relationship. The same gift lands differently on each " +
-                  "- that is the dynamic binding.", DatingUi.Body);
+                  "TL5 / F6 - Dating System MVP   |   one SuitorCard prefab instance, rebound per suitor",
+                  DatingUi.Header);
+
+        float by = DatingUi.CardTop - 38f * s;
+        if (GUI.Button(new Rect(x, by, 110f * s, 30f * s), "< Prev", DatingUi.Button))
+            ShowSuitor(current - 1);
+        GUI.Label(new Rect(x + 120f * s, by + 4f * s, w - 240f * s, 26f * s),
+                  "Suitor " + (current + 1) + " of " + suitors.Length, DatingUi.Body);
+        if (GUI.Button(new Rect(x + w - 110f * s, by, 110f * s, 30f * s), "Next >", DatingUi.Button))
+            ShowSuitor(current + 1);
 
         float bx = Screen.width - m - 150f * s;
         GUI.Label(new Rect(bx, 14f * s, 60f * s, 28f * s), "Size", DatingUi.Body);

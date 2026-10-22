@@ -14,7 +14,8 @@ public class SuitorView : MonoBehaviour
         slot = slotIndex;
         controller = owningController;
         gameObject.name = "SuitorCard - " + boundSuitor.DisplayName;
-        transform.position = new Vector3(slotIndex * 2.5f, 0f, 0f);
+        lastLine = "";
+        lastMood = Mood.Neutral;
     }
 
     private void Select()
@@ -27,17 +28,17 @@ public class SuitorView : MonoBehaviour
         if (suitor == null) return;
 
         float s = DatingUi.Scale;
-        float pad = 12f * s;
-        float x = DatingUi.Margin + slot * DatingUi.CardSpacing;
-        float y = DatingUi.CardTop;
+        float pad = 14f * s;
         float w = DatingUi.CardWidth;
+        float x = (Screen.width - w) * 0.5f;
+        float y = DatingUi.CardTop;
         float inner = w - pad * 2f;
 
         GUI.Box(new Rect(x, y, w, DatingUi.CardHeight), GUIContent.none);
 
         float cy = y + pad;
-        GUI.Label(new Rect(x + pad, cy, inner, 30f * s), suitor.DisplayName, DatingUi.Title);
-        cy += 34f * s;
+        GUI.Label(new Rect(x + pad, cy, inner, 32f * s), suitor.DisplayName, DatingUi.Title);
+        cy += 36f * s;
 
         GUI.Label(new Rect(x + pad, cy, inner, 24f * s),
                   "Stage: " + suitor.State.Stage, DatingUi.Body);
@@ -47,7 +48,7 @@ public class SuitorView : MonoBehaviour
                   "   (next stage in " + suitor.State.AffectionToNextStage() + ")", DatingUi.Body);
         cy += 32f * s;
 
-        if (GUI.Button(new Rect(x + pad, cy, inner, 30f * s), "Begin Conversation", DatingUi.Button))
+        if (GUI.Button(new Rect(x + pad, cy, inner, 32f * s), "Begin Conversation", DatingUi.Button))
         {
             Select();
             Show(controller.BeginConversation());
@@ -56,7 +57,7 @@ public class SuitorView : MonoBehaviour
 
         foreach (Gift gift in Gift.Catalogue)
         {
-            if (GUI.Button(new Rect(x + pad, cy, inner, 30f * s), "Gift: " + gift.DisplayName, DatingUi.Button))
+            if (GUI.Button(new Rect(x + pad, cy, inner, 32f * s), "Gift: " + gift.DisplayName, DatingUi.Button))
             {
                 Select();
                 Show(controller.OfferGift(gift));
@@ -64,7 +65,7 @@ public class SuitorView : MonoBehaviour
             cy += DatingUi.Row;
         }
 
-        if (GUI.Button(new Rect(x + pad, cy, inner, 30f * s), "Advance Relationship", DatingUi.Button))
+        if (GUI.Button(new Rect(x + pad, cy, inner, 32f * s), "Advance Relationship", DatingUi.Button))
         {
             Select();
             bool moved = controller.Advance();

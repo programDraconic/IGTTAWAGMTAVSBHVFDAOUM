@@ -14,7 +14,7 @@ public static class DatingUi
     }
 
     public static float Margin      { get { return 24f * Scale; } }
-    public static float CardWidth   { get { return 360f * Scale; } }
+    public static float CardWidth   { get { return 460f * Scale; } }
     public static float CardSpacing { get { return 380f * Scale; } }
     public static float CardHeight  { get { return 430f * Scale; } }
     public static float CardTop     { get { return 96f * Scale; } }

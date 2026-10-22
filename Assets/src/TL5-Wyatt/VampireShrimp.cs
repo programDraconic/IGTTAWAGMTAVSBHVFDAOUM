@@ -1,6 +1,6 @@
-public class Husband : Suitor
+public class VampireShrimp : Suitor
 {
-    public Husband() : base("husband", "Vampire Shrimp Husband") { }
+    public VampireShrimp() : base("vampireshrimp", "Vampire Shrimp") { }
 
     protected override int EvaluateTaste(Gift gift)
     {
