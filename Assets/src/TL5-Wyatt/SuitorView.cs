@@ -31,35 +31,45 @@ public class SuitorView : MonoBehaviour
     {
         if (suitor == null) return;
 
-        float x = 20f + slot * 250f;
-        float y = 70f;
-        GUI.Box(new Rect(x, y, 240f, 250f), GUIContent.none);
+        float s = DatingUi.Scale;
+        float pad = 12f * s;
+        float x = DatingUi.Margin + slot * DatingUi.CardSpacing;
+        float y = DatingUi.CardTop;
+        float w = DatingUi.CardWidth;
+        float inner = w - pad * 2f;
 
-        GUI.Label(new Rect(x + 10f, y + 8f, 220f, 22f), suitor.DisplayName);
-        GUI.Label(new Rect(x + 10f, y + 30f, 220f, 22f),
-                  "Stage: " + suitor.State.Stage + "   Affection: " + suitor.State.Affection);
-        GUI.Label(new Rect(x + 10f, y + 50f, 220f, 22f),
-                  "Next stage in: " + suitor.State.AffectionToNextStage());
+        GUI.Box(new Rect(x, y, w, DatingUi.CardHeight), GUIContent.none);
 
-        float by = y + 76f;
-        if (GUI.Button(new Rect(x + 10f, by, 220f, 22f), "Begin Conversation"))
+        float cy = y + pad;
+        GUI.Label(new Rect(x + pad, cy, inner, 30f * s), suitor.DisplayName, DatingUi.Title);
+        cy += 34f * s;
+
+        GUI.Label(new Rect(x + pad, cy, inner, 24f * s),
+                  "Stage: " + suitor.State.Stage, DatingUi.Body);
+        cy += 24f * s;
+        GUI.Label(new Rect(x + pad, cy, inner, 24f * s),
+                  "Affection: " + suitor.State.Affection +
+                  "   (next stage in " + suitor.State.AffectionToNextStage() + ")", DatingUi.Body);
+        cy += 32f * s;
+
+        if (GUI.Button(new Rect(x + pad, cy, inner, 30f * s), "Begin Conversation", DatingUi.Button))
         {
             Select();
             Show(controller.BeginConversation());
         }
-        by += 26f;
+        cy += DatingUi.Row;
 
         foreach (Gift gift in Gift.Catalogue)
         {
-            if (GUI.Button(new Rect(x + 10f, by, 220f, 22f), "Gift: " + gift.DisplayName))
+            if (GUI.Button(new Rect(x + pad, cy, inner, 30f * s), "Gift: " + gift.DisplayName, DatingUi.Button))
             {
                 Select();
                 Show(controller.OfferGift(gift));
             }
-            by += 24f;
+            cy += DatingUi.Row;
         }
 
-        if (GUI.Button(new Rect(x + 10f, by, 220f, 22f), "Advance Relationship"))
+        if (GUI.Button(new Rect(x + pad, cy, inner, 30f * s), "Advance Relationship", DatingUi.Button))
         {
             Select();
             bool moved = controller.Advance();
@@ -68,8 +78,10 @@ public class SuitorView : MonoBehaviour
                 : "-> not enough affection yet";
             lastMood = moved ? Mood.Delighted : Mood.Annoyed;
         }
+        cy += DatingUi.Row + 6f * s;
 
-        GUI.Label(new Rect(x + 10f, y + 218f, 220f, 40f), "[" + lastMood + "] " + lastLine);
+        GUI.Label(new Rect(x + pad, cy, inner, DatingUi.CardHeight - (cy - y) - pad),
+                  "[" + lastMood + "]  " + lastLine, DatingUi.Body);
     }
 
     private void Show(Reaction reaction)

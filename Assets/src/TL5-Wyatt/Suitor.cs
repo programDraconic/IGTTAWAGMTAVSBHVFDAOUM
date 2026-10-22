@@ -43,6 +43,9 @@ public abstract class Suitor
 
     protected virtual Reaction SelectReaction()
     {
-        return new Reaction(DisplayName + " accepts it without comment.", Mood.Neutral);
+        // Deliberately carries no name or stage: if the override below is ever
+        // removed, every suitor says exactly this, and the collapse is obvious
+        // both on screen and in DatingTests.
+        return new Reaction("...accepts it without comment.", Mood.Neutral);
     }
 }

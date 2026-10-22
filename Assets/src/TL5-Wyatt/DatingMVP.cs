@@ -11,12 +11,19 @@ public class DatingMVP : MonoBehaviour
              "Left empty, it is loaded from Resources at run time.")]
     public GameObject suitorCardPrefab;
 
+    [Tooltip("Card size multiplier. Cards already scale with the Game view width; " +
+             "raise this if they are still too small. Also adjustable in Play mode.")]
+    [Range(0.4f, 3f)]
+    public float uiScale = 1f;
+
     private DatingController controller;
     private readonly List<string> unlockLog = new List<string>();
     private readonly List<GameObject> spawned = new List<GameObject>();
 
     private void Start()
     {
+        DatingUi.UserScale = uiScale;
+
         controller = new DatingController();
         controller.UnlockEarned += OnUnlockEarned;   // F3 subscribes here in the real build
         controller.EnterDatingPhase();
@@ -49,15 +56,31 @@ public class DatingMVP : MonoBehaviour
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(20f, 10f, 900f, 22f),
-                  "TL5 / F6 - Dating System MVP   |   " + spawned.Count + " suitor cards instantiated from prefab");
-        GUI.Label(new Rect(20f, 32f, 900f, 22f),
-                  "Gift, then Advance Relationship. Each suitor values gifts differently - that is the dynamic binding.");
+        float s = DatingUi.Scale;
+        float m = DatingUi.Margin;
 
-        float y = 330f;
-        GUI.Label(new Rect(20f, y, 900f, 22f), "Unlock events published to F3:");
+        GUI.Label(new Rect(m, 14f * s, Screen.width - m * 2f, 28f * s),
+                  "TL5 / F6 - Dating System MVP   |   " + spawned.Count +
+                  " suitor cards instantiated from SuitorCard.prefab", DatingUi.Header);
+        GUI.Label(new Rect(m, 44f * s, Screen.width - m * 2f - 200f * s, 28f * s),
+                  "Gift a suitor, then Advance Relationship. The same gift lands differently on each " +
+                  "- that is the dynamic binding.", DatingUi.Body);
+
+        // Live size control, so the cards can be read on any monitor.
+        float bx = Screen.width - m - 150f * s;
+        GUI.Label(new Rect(bx, 14f * s, 60f * s, 28f * s), "Size", DatingUi.Body);
+        if (GUI.Button(new Rect(bx + 55f * s, 14f * s, 42f * s, 28f * s), "A-", DatingUi.Button))
+            DatingUi.UserScale = Mathf.Clamp(DatingUi.UserScale - 0.15f, 0.4f, 3f);
+        if (GUI.Button(new Rect(bx + 102f * s, 14f * s, 42f * s, 28f * s), "A+", DatingUi.Button))
+            DatingUi.UserScale = Mathf.Clamp(DatingUi.UserScale + 0.15f, 0.4f, 3f);
+
+        float y = DatingUi.CardTop + DatingUi.CardHeight + 16f * s;
+        GUI.Label(new Rect(m, y, Screen.width - m * 2f, 26f * s),
+                  "Unlock events published to F3:", DatingUi.Header);
         for (int i = 0; i < unlockLog.Count; i++)
-            GUI.Label(new Rect(36f, y + 20f + i * 18f, 900f, 20f), "- " + unlockLog[i]);
+            GUI.Label(new Rect(m + 16f * s, y + 28f * s + i * 24f * s,
+                               Screen.width - m * 2f, 24f * s),
+                      "- " + unlockLog[i], DatingUi.Body);
     }
 
     private void OnDestroy()
