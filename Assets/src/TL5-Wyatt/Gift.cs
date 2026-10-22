@@ -1,6 +1,3 @@
-// Assets/src/TL5-Wyatt/Gift.cs
-// Plain C# data type. Parameter of ReceiveGift / EvaluateTaste on the TL5 class diagram.
-
 using System.Collections.Generic;
 
 public enum GiftKind { Trinket, Delicacy, Blood, Heirloom }
@@ -20,7 +17,6 @@ public class Gift
         Value = value;
     }
 
-    // Catalogue for the MVP. Replace with a data table when the full feature lands.
     public static readonly Gift ShrimpCracker = new Gift("cracker", "Shrimp Cracker", GiftKind.Trinket, 1);
     public static readonly Gift Pearl         = new Gift("pearl",   "Pearl",          GiftKind.Delicacy, 3);
     public static readonly Gift BloodVial     = new Gift("blood",   "Blood Vial",     GiftKind.Blood,    4);

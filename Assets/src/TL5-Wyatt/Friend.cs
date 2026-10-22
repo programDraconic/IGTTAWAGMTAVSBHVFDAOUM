@@ -1,13 +1,9 @@
-// Assets/src/TL5-Wyatt/Friend.cs
-// Subclass from the TL5 class diagram - the sympathetic in-law. Easiest unlocks.
-
 public class Friend : Suitor
 {
     public Friend() : base("friend", "Sympathetic Sibling") { }
 
     protected override int EvaluateTaste(Gift gift)
     {
-        // Low bar. Everything lands, nothing offends.
         return gift.Value + 2;
     }
 

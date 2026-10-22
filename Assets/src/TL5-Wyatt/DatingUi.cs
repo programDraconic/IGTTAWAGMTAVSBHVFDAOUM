@@ -1,13 +1,7 @@
-// Assets/src/TL5-Wyatt/DatingUi.cs
-// Shared sizing and styles for the MVP's on-screen cards. Scales with the
-// Game view width so the cards stay readable at any resolution.
-
 using UnityEngine;
 
 public static class DatingUi
 {
-    // Multiplier on top of the automatic scale. Driven by the A+ / A- buttons
-    // and by the UI Scale field on DatingMVP.
     public static float UserScale = 1f;
 
     public static float Scale

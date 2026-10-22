@@ -1,6 +1,3 @@
-// Assets/src/TL5-Wyatt/RelationshipStage.cs
-// Type of RelationshipState.stage on the TL5 class diagram.
-
 public enum RelationshipStage
 {
     Hostile = 0,

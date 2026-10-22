@@ -1,7 +1,3 @@
-// Assets/src/TL5-Wyatt/Suitor.cs
-// Abstract superclass from the TL5 class diagram (slides 34-36).
-// Plain C# - NOT a MonoBehaviour, so tests can construct subclasses with 'new'.
-
 public abstract class Suitor
 {
     private readonly RelationshipState relationshipState = new RelationshipState();
@@ -15,27 +11,20 @@ public abstract class Suitor
         DisplayName = displayName;
     }
 
-    // Read-only view for the UI and for F3's persistence. The field itself stays private.
     public RelationshipState State { get { return relationshipState; } }
 
-    // ---- TEMPLATE METHOD -------------------------------------------------
-    // Fixed three-step courtship sequence. Deliberately NOT virtual: every suitor
-    // runs the same steps, and only the two steps below may vary by type.
     public Reaction ReceiveGift(Gift gift)
     {
-        int delta = EvaluateTaste(gift);          // step 1 - overridable
-        relationshipState.Record(gift, delta);    // step 2 - fixed, identical for all
-        return SelectReaction();                  // step 3 - overridable
+        int delta = EvaluateTaste(gift);
+        relationshipState.Record(gift, delta);
+        return SelectReaction();
     }
 
-    // "Begin Conversation" use case: a reaction with no gift involved.
     public Reaction Converse()
     {
         return SelectReaction();
     }
 
-    // ---- THE DYNAMIC BINDING PAIR ---------------------------------------
-    // virtual here, override in Husband / Matriarch / Potential / Friend.
     protected virtual int EvaluateTaste(Gift gift)
     {
         return gift.Value;
@@ -43,9 +32,6 @@ public abstract class Suitor
 
     protected virtual Reaction SelectReaction()
     {
-        // Deliberately carries no name or stage: if the override below is ever
-        // removed, every suitor says exactly this, and the collapse is obvious
-        // both on screen and in DatingTests.
         return new Reaction("...accepts it without comment.", Mood.Neutral);
     }
 }

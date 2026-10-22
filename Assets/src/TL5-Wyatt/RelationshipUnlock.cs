@@ -1,6 +1,3 @@
-// Assets/src/TL5-Wyatt/RelationshipUnlock.cs
-// Payload of the "Publish Unlock Event" use case. Consumed by F3 (Summons & Persistence).
-
 public class RelationshipUnlock
 {
     public readonly string SuitorId;

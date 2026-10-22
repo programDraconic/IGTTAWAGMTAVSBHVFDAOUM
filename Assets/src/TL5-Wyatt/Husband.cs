@@ -1,13 +1,9 @@
-// Assets/src/TL5-Wyatt/Husband.cs
-// Subclass from the TL5 class diagram - the vampire shrimp you are marrying.
-
 public class Husband : Suitor
 {
     public Husband() : base("husband", "Vampire Shrimp Husband") { }
 
     protected override int EvaluateTaste(Gift gift)
     {
-        // Generous: likes everything, adores delicacies.
         if (gift.Kind == GiftKind.Delicacy) return gift.Value + 3;
         return gift.Value + 1;
     }

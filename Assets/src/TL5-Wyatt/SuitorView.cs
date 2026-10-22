@@ -1,8 +1,3 @@
-// Assets/src/TL5-Wyatt/SuitorView.cs
-// The MonoBehaviour on the SuitorCard prefab. One instance per suitor, created at
-// run time with Instantiate(). Draws that suitor's card and routes button presses
-// back through DatingController's public surface.
-
 using UnityEngine;
 
 public class SuitorView : MonoBehaviour

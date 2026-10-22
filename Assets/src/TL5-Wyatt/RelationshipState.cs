@@ -1,7 +1,3 @@
-// Assets/src/TL5-Wyatt/RelationshipState.cs
-// "stores" association from Suitor on the TL5 class diagram.
-// Fields match the diagram exactly: affection, stage, giftHistory.
-
 using System.Collections.Generic;
 
 public class RelationshipState
@@ -10,14 +6,12 @@ public class RelationshipState
     private RelationshipStage stage;
     private readonly List<Gift> giftHistory = new List<Gift>();
 
-    // Affection needed to reach each stage, indexed by RelationshipStage.
     private static readonly int[] Thresholds = { 0, 4, 10, 18, 28 };
 
     public int Affection { get { return affection; } }
     public RelationshipStage Stage { get { return stage; } }
     public IReadOnlyList<Gift> GiftHistory { get { return giftHistory; } }
 
-    // Fixed step of the ReceiveGift template - identical for every suitor.
     public void Record(Gift gift, int delta)
     {
         giftHistory.Add(gift);
@@ -25,7 +19,6 @@ public class RelationshipState
         if (affection < 0) affection = 0;
     }
 
-    // "Advance Relationship" use case. Returns true if the stage actually moved up.
     public bool TryAdvanceStage()
     {
         int next = (int)stage + 1;
@@ -43,7 +36,6 @@ public class RelationshipState
         return needed < 0 ? 0 : needed;
     }
 
-    // "Capture / Restore State" use case - the surface F3 persists.
     public RelationshipSnapshot Capture()
     {
         return new RelationshipSnapshot(affection, stage, giftHistory.Count);

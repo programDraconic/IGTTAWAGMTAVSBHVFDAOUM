@@ -1,7 +1,3 @@
-// Assets/src/TL5-Wyatt/DatingMVP.cs
-// TL5 MVP driver. Builds the dating phase and INSTANTIATES one SuitorCard prefab
-// per suitor at run time. Put this on one empty GameObject in your own scene.
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,7 +21,7 @@ public class DatingMVP : MonoBehaviour
         DatingUi.UserScale = uiScale;
 
         controller = new DatingController();
-        controller.UnlockEarned += OnUnlockEarned;   // F3 subscribes here in the real build
+        controller.UnlockEarned += OnUnlockEarned;
         controller.EnterDatingPhase();
 
         GameObject prefab = suitorCardPrefab != null
@@ -66,7 +62,6 @@ public class DatingMVP : MonoBehaviour
                   "Gift a suitor, then Advance Relationship. The same gift lands differently on each " +
                   "- that is the dynamic binding.", DatingUi.Body);
 
-        // Live size control, so the cards can be read on any monitor.
         float bx = Screen.width - m - 150f * s;
         GUI.Label(new Rect(bx, 14f * s, 60f * s, 28f * s), "Size", DatingUi.Body);
         if (GUI.Button(new Rect(bx + 55f * s, 14f * s, 42f * s, 28f * s), "A-", DatingUi.Button))

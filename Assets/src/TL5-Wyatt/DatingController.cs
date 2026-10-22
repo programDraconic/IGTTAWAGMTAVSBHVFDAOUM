@@ -1,7 +1,3 @@
-// Assets/src/TL5-Wyatt/DatingController.cs
-// Public surface of F6 from the TL5 use case diagram (slide 33) and class diagram (slide 34).
-// Plain C# - no Unity dependency, so the whole feature is testable with no scene loaded.
-
 using System;
 using System.Collections.Generic;
 
@@ -10,10 +6,8 @@ public class DatingController
     private readonly List<Suitor> suitors = new List<Suitor>();
     private int current;
 
-    // "Publish Unlock Event" use case. F3 (Summons & Persistence) subscribes.
     public event Action<RelationshipUnlock> UnlockEarned;
 
-    // Rewards granted when a suitor crosses into a stage.
     private static readonly Dictionary<RelationshipStage, string> StageRewards =
         new Dictionary<RelationshipStage, string>
         {
@@ -23,7 +17,6 @@ public class DatingController
             { RelationshipStage.Betrothed,  "Summon unlocked: Hunting Summon" },
         };
 
-    // ---- Use case: Enter Dating Phase (includes Get Suitors) --------------
     public void EnterDatingPhase()
     {
         if (suitors.Count == 0)
@@ -36,7 +29,6 @@ public class DatingController
         current = 0;
     }
 
-    // ---- Use case: Get Suitors -------------------------------------------
     public Suitor[] GetSuitors()
     {
         return suitors.ToArray();
@@ -47,15 +39,12 @@ public class DatingController
         get { return suitors.Count == 0 ? null : suitors[current]; }
     }
 
-    // Not on the diagram - see "Deviations" in the README. OfferGift and
-    // BeginConversation take no suitor parameter, so something has to say who.
     public void SelectSuitor(int index)
     {
         if (index < 0 || index >= suitors.Count) return;
         current = index;
     }
 
-    // ---- Use case: Offer Gift --------------------------------------------
     public Reaction OfferGift(Gift gift)
     {
         Suitor suitor = CurrentSuitor;
@@ -63,14 +52,12 @@ public class DatingController
         return suitor.ReceiveGift(gift);
     }
 
-    // ---- Use case: Begin Conversation ------------------------------------
     public Reaction BeginConversation()
     {
         Suitor suitor = CurrentSuitor;
         return suitor == null ? null : suitor.Converse();
     }
 
-    // ---- Use case: Advance Relationship (includes Publish Unlock Event) ---
     public bool Advance()
     {
         Suitor suitor = CurrentSuitor;
@@ -86,7 +73,6 @@ public class DatingController
         return true;
     }
 
-    // ---- Use case: Capture / Restore State -------------------------------
     public Dictionary<string, RelationshipSnapshot> CaptureState()
     {
         var snapshot = new Dictionary<string, RelationshipSnapshot>();

@@ -1,13 +1,9 @@
-// Assets/src/TL5-Wyatt/Potential.cs
-// Subclass from the TL5 class diagram - a recruitable shrimp courted during the run.
-
 public class Potential : Suitor
 {
     public Potential() : base("potential", "Potential Recruit") { }
 
     protected override int EvaluateTaste(Gift gift)
     {
-        // Vampire tastes: blood above all, indifferent to the rest.
         if (gift.Kind == GiftKind.Blood) return gift.Value + 3;
         return gift.Value - 1;
     }

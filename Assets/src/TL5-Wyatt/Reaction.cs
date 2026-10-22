@@ -1,6 +1,3 @@
-// Assets/src/TL5-Wyatt/Reaction.cs
-// Return type of SelectReaction() on the TL5 class diagram.
-
 public enum Mood { Insulted, Annoyed, Neutral, Pleased, Delighted }
 
 public class Reaction
