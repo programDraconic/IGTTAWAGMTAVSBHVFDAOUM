@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StressTestTl4Script
   numberOfObjectsViewer: {fileID: 1380369060}
   fpsCounter: {fileID: 2036160006}
-  objectToSpawn: {fileID: 3790844724482328560, guid: f6da8248f7c262d4a91ec11cc9e9c010, type: 3}
+  objectToSpawn: {fileID: 3790844724482328560, guid: 838641b9b27874b42a10823bce5f242a, type: 3}
 --- !u!4 &844029158
 Transform:
   m_ObjectHideFlags: 0
@@ -773,7 +773,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Crystal
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -839,7 +839,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -68.07596, y: 0, z: -171.36304, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
