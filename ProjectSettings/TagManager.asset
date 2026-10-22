@@ -9,7 +9,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Thingies
   - Water
   - UI
   - 
@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: bkg
+    uniqueID: 1577135379
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
