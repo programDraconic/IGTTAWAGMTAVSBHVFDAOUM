@@ -1,0 +1,5 @@
+{
+    "name": "TL6.Editor",
+    "references": ["TL6Assembly"],
+    "includePlatforms": ["Editor"]
+}
