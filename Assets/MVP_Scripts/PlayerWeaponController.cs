@@ -61,4 +61,15 @@ public class PlayerWeaponController : MonoBehaviour
             }
         }
     }
+
+    public void StressTestFire()
+    {
+        if (weapon == null)
+            return;
+    
+        if (!weapon.HasAmmo)
+            weapon.Reload();
+    
+        Attack();
+    }
 }
