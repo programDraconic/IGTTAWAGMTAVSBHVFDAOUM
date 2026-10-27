@@ -3,6 +3,10 @@
 // (the binding assignment allows this); the diagram says void.
 public abstract class RunState
 {
+    // True only for states where gameplay should be running.
+    // The runner uses this to freeze/unfreeze Unity (Time.timeScale, audio).
+    public virtual bool RunsSimulation { get { return false; } }
+
     public virtual void EnterState(RunSession session) { }
 
     // Default: this state cannot be paused. PlayingState overrides it.
