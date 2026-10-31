@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 // Attach to an active GameObject to test pickups and level-up choices.
 public class PickupBindingDemo : MonoBehaviour
 {
@@ -14,16 +14,22 @@ public class PickupBindingDemo : MonoBehaviour
     private float previousTimeScale = 1f;
     private string lastResult = "Collect XP or press L to level up.";
 
-    private void Update()
+private void Update()
+{
+    // Use the Input System package for keyboard input.
+    if (Keyboard.current != null &&
+        Keyboard.current.lKey.wasPressedThisFrame &&
+        player.PendingLevelUps == 0)
     {
-        // Legacy Unity Input Manager: no Input System package required.
-        if (Input.GetKeyDown(KeyCode.L) && player.PendingLevelUps == 0)
-        {
-            player.SetLevel(player.Level + 1);
-            lastResult = "DEBUG: Level up (L).";
-        }
-        if (player.PendingLevelUps > 0 && choices == null) StartCardSelection();
+        player.SetLevel(player.Level + 1);
+        lastResult = "DEBUG: Level up (L).";
     }
+
+    if (player.PendingLevelUps > 0 && choices == null)
+    {
+        StartCardSelection();
+    }
+}
 
     private void OnDisable() { ResumeAfterUpgrades(); }
 

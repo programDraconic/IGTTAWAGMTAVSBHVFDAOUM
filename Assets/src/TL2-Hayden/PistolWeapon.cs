@@ -2,16 +2,18 @@ using UnityEngine;
 
 public class PistolWeapon : WeaponBase
 {
-    private float burstDelay;
+    private readonly float burstDelay;
 
-    public PistolWeapon(WeaponData data, float burstDelay) : base(data)
+    public PistolWeapon(
+        WeaponData data,
+        float burstDelay
+    ) : base(data, burstDelay)
     {
-        this.burstDelay = burstDelay;
+        this.burstDelay = Cooldown;
     }
 
-    public override void Fire()
+    protected override void OnFire()
     {
-        base.Fire();
         Debug.Log($"Pistol burst delay: {burstDelay}");
     }
 }

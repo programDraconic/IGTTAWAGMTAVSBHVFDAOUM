@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PistolInput : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PistolInput : MonoBehaviour
     [SerializeField] private Transform playerRoot;
 
     private PistolWeapon pistol;
+    private bool isReloading;
+    private Coroutine reloadRoutine;
 
     private void Awake()
     {
@@ -21,35 +24,80 @@ public class PistolInput : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
+        if (isReloading)
         {
-            pistol.Reload();
+        return;
         }
 
-        if (Mouse.current == null ||
-            !Mouse.current.leftButton.wasPressedThisFrame)
-            return;
-
-        if (projectilePrefab == null || muzzle == null)
+        if (Keyboard.current != null &&
+            Keyboard.current.rKey.wasPressedThisFrame)
         {
-            Debug.LogError("Assign the projectile prefab and muzzle in the Inspector.");
-            return;
-        }
-
-        bool hadAmmo = pistol.HasAmmo;
-        pistol.Fire();
-
-        if (hadAmmo)
+            if (pistol.CurrentAmmo < weaponData.magazineSize)
         {
-            if (muzzleFlash != null)
-            {
-                muzzleFlash.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-                muzzleFlash.Play(true);
-            }
-        
-            ShootProjectile();
+            reloadRoutine = StartCoroutine(ReloadRoutine());
+            return;
         }
     }
+
+    if (Mouse.current == null ||
+        !Mouse.current.leftButton.wasPressedThisFrame)
+    {
+        return;
+    }
+
+    if (projectilePrefab == null || muzzle == null)
+    {
+        Debug.LogError(
+            "Assign the projectile prefab and muzzle in the Inspector."
+        );
+
+        return;
+    }
+
+    if (pistol.TryFire())
+    {
+        if (muzzleFlash != null)
+        {
+            muzzleFlash.Stop(
+                true,
+                ParticleSystemStopBehavior.StopEmittingAndClear
+            );
+
+            muzzleFlash.Play(true);
+        }
+
+        ShootProjectile();
+    }
+}
+
+private IEnumerator ReloadRoutine()
+{
+    isReloading = true;
+
+    Debug.Log("Reloading...");
+
+    yield return new WaitForSeconds(
+        Mathf.Max(0f, weaponData.reloadTime)
+    );
+
+    pistol.Reload();
+
+    isReloading = false;
+    reloadRoutine = null;
+
+    Debug.Log($"Reload complete. Ammo: {pistol.CurrentAmmo}");
+}
+
+private void OnDisable()
+{
+    if (reloadRoutine != null)
+    {
+        StopCoroutine(reloadRoutine);
+        reloadRoutine = null;
+    }
+
+    isReloading = false;
+}
 
     private void ShootProjectile()
     {
