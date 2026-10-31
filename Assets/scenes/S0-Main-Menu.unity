@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdad51d8365afa24490e0ecb3322bb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Adam.Game::MainMenu
-  tutorialSceneName: MVP
+  tutorialSceneName: S1-Tutorial
   quitButton: {fileID: 869474837}
 --- !u!4 &954421605
 Transform:
