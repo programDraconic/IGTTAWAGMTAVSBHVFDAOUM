@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class LegacyEnemyHealth : MonoBehaviour
 {
     [SerializeField] private int hitsToKill = 3;
     [SerializeField] private GameObject crystalPrefab;

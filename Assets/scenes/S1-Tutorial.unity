@@ -6573,7 +6573,7 @@ MonoBehaviour:
     magazineSize: 12
     reloadTime: 1.5
   burstDelay: 0.25
-  projectilePrefab: {fileID: 2788242311292452459, guid: 8bcf1acf075024bde929441e68cbcebe, type: 3}
+  projectilePrefab: {fileID: 1828107907742112905, guid: 8bcf1acf075024bde929441e68cbcebe, type: 3}
   muzzle: {fileID: 1403679466}
   projectileSpeed: 15
   muzzleFlash: {fileID: 131294729}
