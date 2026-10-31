@@ -10,6 +10,13 @@ public static class DatingStressSetup
     [MenuItem("TL5/Create Dating Stress Scene")]
     public static void CreateScene()
     {
+        if (System.IO.File.Exists(ScenePath))
+        {
+            Debug.LogWarning("TL5 stress scene already exists at " + ScenePath +
+                             ". Use TL5 > Open Dating Stress Scene, or delete the file to rebuild it.");
+            return;
+        }
+
         if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
 
         Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);

@@ -2,7 +2,8 @@
     "name": "Wyatt.Editor",
     "rootNamespace": "",
     "references": [
-        "Wyatt.Game"
+        "Wyatt.Game",
+        "Adam.Game"
     ],
     "includePlatforms": [
         "Editor"
