@@ -1,21 +1,21 @@
-using System;
-
-// Represents a single upgrade shown as one of three card choices.
+// COMMAND PATTERN: UpgradeCard binds visible card information to a command.
+// The card does not know how the upgrade works.
 public class UpgradeCard
 {
     public readonly string Title;
     public readonly string Description;
-    private readonly Action<PlayerStats> effect;
+    private readonly IUpgradeCommand command;
 
-    public UpgradeCard(string title, string description, Action<PlayerStats> effect)
+    public UpgradeCard(string title, string description, IUpgradeCommand command)
     {
         Title = title;
         Description = description;
-        this.effect = effect;
+        this.command = command;
     }
 
+    // Called by the UI when a card is selected.
     public void Apply(PlayerStats player)
     {
-        effect(player);
+        command.Execute(player); // <-- COMMAND PATTERN: execute selected action
     }
 }

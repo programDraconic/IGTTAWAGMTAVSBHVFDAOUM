@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 // Shared runtime player data. Any script can read PlayerStats.Shared.Level / XP
 // and write through GainXP, SetXP, or SetLevel.
@@ -10,6 +11,37 @@ public class PlayerStats
     public int XP { get; private set; } = 0; // XP toward the next level
     public int XPToNextLevel => 100 + (Level - 1) * 50;
     public int PendingLevelUps { get; private set; } = 0;
+
+    // Shared, run-wide card resources; other scripts may read them.
+    public int RerollsRemaining { get; private set; } = 3;
+    public int BanishesRemaining { get; private set; } = 3;
+    private readonly HashSet<string> banishedCards = new HashSet<string>();
+    public ICollection<string> BanishedCards => new List<string>(banishedCards).AsReadOnly();
+
+    public bool UseReroll()
+    {
+        if (PendingLevelUps <= 0 || RerollsRemaining <= 0) return false;
+        RerollsRemaining--;
+        return true;
+    }
+
+    public bool TryBanishCard(string title)
+    {
+        if (PendingLevelUps <= 0 || BanishesRemaining <= 0 ||
+            string.IsNullOrEmpty(title) || banishedCards.Contains(title) ||
+            UpgradeDeck.AvailableCount(banishedCards) <= 1) return false;
+        BanishesRemaining--;
+        banishedCards.Add(title);
+        return true;
+    }
+
+    // Invoke when starting a fresh run (not between levels).
+    public void ResetCardResources()
+    {
+        RerollsRemaining = 3;
+        BanishesRemaining = 3;
+        banishedCards.Clear();
+    }
 
     // Other systems can subscribe to these notifications to refresh UI, etc.
     public event Action<int> LevelChanged;
