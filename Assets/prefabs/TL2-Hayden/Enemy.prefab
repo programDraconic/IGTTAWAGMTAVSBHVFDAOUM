@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8280819931835784618}
   - component: {fileID: 2590197150813284127}
   - component: {fileID: 8734777083684081018}
-  - component: {fileID: 2531844720101764287}
+  - component: {fileID: 8982292468543682647}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
   player: {fileID: 0}
   moveSpeed: 2
---- !u!114 &2531844720101764287
+--- !u!114 &8982292468543682647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,8 +192,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 480965079651196414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8221c4926e81402c8749c935bc57006, type: 3}
+  m_Script: {fileID: 11500000, guid: d29cbd09de12ff448893291d2251661f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  hitsToKill: 3
-  crystalPrefab: {fileID: 3790844724482328560, guid: f6da8248f7c262d4a91ec11cc9e9c010, type: 3}
+  m_EditorClassIdentifier: Michael.Game::EnemyHealth
+  hitsToKill: 1
+  crystalPrefab: {fileID: 3790844724482328560, guid: 065c4ef846114ee4681b6e7e8480ed22, type: 3}
+  crystalDropTable: {fileID: 11400000, guid: f11f73bbee00001448f8a17b55bf9735, type: 2}
+  dropScatterRadius: 0.55

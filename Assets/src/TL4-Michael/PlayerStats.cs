@@ -18,16 +18,16 @@ public class PlayerStats
     private readonly HashSet<string> banishedCards = new HashSet<string>();
     public ICollection<string> BanishedCards => new List<string>(banishedCards).AsReadOnly();
 
-    public bool UseReroll()
+    public bool UseReroll(bool hasActiveChoice = false)
     {
-        if (PendingLevelUps <= 0 || RerollsRemaining <= 0) return false;
+        if ((!hasActiveChoice && PendingLevelUps <= 0) || RerollsRemaining <= 0) return false;
         RerollsRemaining--;
         return true;
     }
 
-    public bool TryBanishCard(string title)
+    public bool TryBanishCard(string title, bool hasActiveChoice = false)
     {
-        if (PendingLevelUps <= 0 || BanishesRemaining <= 0 ||
+        if ((!hasActiveChoice && PendingLevelUps <= 0) || BanishesRemaining <= 0 ||
             string.IsNullOrEmpty(title) || banishedCards.Contains(title) ||
             UpgradeDeck.AvailableCount(banishedCards) <= 1) return false;
         BanishesRemaining--;
