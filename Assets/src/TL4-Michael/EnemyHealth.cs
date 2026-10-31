@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private GameObject crystalPrefab;
     [SerializeField] private CrystalDropTable crystalDropTable;
     [SerializeField, Min(0f)] private float dropScatterRadius = 0.55f;
+
+    [Header("Death Events")]
+    [SerializeField] private UnityEvent onDeath = new UnityEvent();
 
     private int hitsRemaining;
     private bool isDead;
@@ -30,7 +34,16 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         if (isDead) return;
+        // Notify listeners without interrupting the existing death logic.
         isDead = true;
+        try
+        {
+            onDeath.Invoke();
+        }
+        catch (System.Exception exception)
+        {
+        Debug.LogException(exception, this);
+        }
         Debug.Log($"{name}: killed; despawning", this);
 
         // Loot must never be able to prevent the enemy from dying.

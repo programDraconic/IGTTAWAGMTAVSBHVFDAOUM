@@ -72,11 +72,19 @@ public class MonsterSpawner : MonoBehaviour
 
         GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
 
-        EnemyChase chase = enemy.GetComponent<EnemyChase>();
-        if (chase != null)
-            chase.SetTarget(player);
+        EnemyController controller = enemy.GetComponent<EnemyController>();
+
+        if (controller != null)
+        {
+            controller.SetTarget(player);
+        }
         else
-            Debug.LogError("The enemy prefab needs an EnemyChase component.");
+        {
+            Debug.LogError(
+                "The enemy prefab needs an EnemyController component.",
+                enemy
+            );
+        }
 
         spawnedEnemies.Add(enemy);
     }
