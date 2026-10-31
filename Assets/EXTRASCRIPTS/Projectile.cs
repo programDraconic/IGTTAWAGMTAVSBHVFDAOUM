@@ -50,7 +50,11 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
-
+        // Let projectiles pass through crystal pickups.
+        if (other.GetComponentInParent<CrystalPickup>() != null)
+        {
+            return;
+        }
         hasHit = true;
 
         EnemyHealth enemy =

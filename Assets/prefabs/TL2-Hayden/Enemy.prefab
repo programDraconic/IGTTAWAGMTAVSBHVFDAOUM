@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 8280819931835784618}
   - component: {fileID: 2590197150813284127}
   - component: {fileID: 8734777083684081018}
-  - component: {fileID: 8982292468543682647}
+  - component: {fileID: 562240085544224170}
+  - component: {fileID: 1128779797768176157}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -85,12 +86,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: cfe83fb3d83094a6c8c320a87b614f46, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a655397cbc7ecfd46a3dc0c81ec542e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 1.536, y: 1.024}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -134,8 +135,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 1.536, y: 1.024}
+    newSize: {x: 1.536, y: 1.024}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -176,14 +177,31 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480965079651196414}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b09855831aa448709d81e09a5d13b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChase
   player: {fileID: 0}
   moveSpeed: 2
---- !u!114 &8982292468543682647
+--- !u!114 &562240085544224170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480965079651196414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 916c278864cda6b41b2025449ba5a5f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: TL3Assembly::EnemyController
+  target: {fileID: 0}
+  moveSpeed: 2
+  attackRange: 1
+  attackCooldown: 1
+  attackDamage: 5
+--- !u!114 &1128779797768176157
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,7 +213,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d29cbd09de12ff448893291d2251661f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Michael.Game::EnemyHealth
-  hitsToKill: 1
+  hitsToKill: 3
   crystalPrefab: {fileID: 3790844724482328560, guid: 065c4ef846114ee4681b6e7e8480ed22, type: 3}
-  crystalDropTable: {fileID: 11400000, guid: f11f73bbee00001448f8a17b55bf9735, type: 2}
+  crystalDropTable: {fileID: 0}
   dropScatterRadius: 0.55
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 562240085544224170}
+        m_TargetAssemblyTypeName: EnemyController, TL3Assembly
+        m_MethodName: EnterDeadState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
