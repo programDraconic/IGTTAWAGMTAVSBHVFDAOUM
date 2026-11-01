@@ -1189,7 +1189,7 @@ GameObject:
   - component: {fileID: 651912669}
   - component: {fileID: 651912668}
   m_Layer: 0
-  m_Name: pure-black-1080_0
+  m_Name: Stage-Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1244,8 +1244,8 @@ SpriteRenderer:
   m_SortingLayer: -1
   m_SortingOrder: -10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7426195200127680847, guid: ba28f026bca27d146aa257b4e5013ff0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -2270537010637154073, guid: 8093040b197a48642a1f17f87f88656a, type: 3}
+  m_Color: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1265,7 +1265,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2, y: 3.2, z: 0}
-  m_LocalScale: {x: 6.399653, y: 8.492978, z: 1}
+  m_LocalScale: {x: 10, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1422,7 +1422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45443b5e5fb484e919930b6b548d184a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
+  moveSpeed: 12
 --- !u!212 &697344597
 SpriteRenderer:
   serializedVersion: 3
