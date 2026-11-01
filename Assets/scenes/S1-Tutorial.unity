@@ -5141,7 +5141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0046398e419b44ade8347eac4322ac6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterSpawner
-  player: {fileID: 1874237853}
+  player: {fileID: 579603956}
   enemyPrefab: {fileID: 480965079651196414, guid: c3b6cf641d97c4f258dbdec980a4a978, type: 3}
   gameCamera: {fileID: 1303037204}
   spawnInterval: 2
