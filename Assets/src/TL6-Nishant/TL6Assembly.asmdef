@@ -1,7 +1,7 @@
 {
     "name": "TL6Assembly",
     "rootNamespace": "",
-    "references": [],
+    "references": ["Michael.Game"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
