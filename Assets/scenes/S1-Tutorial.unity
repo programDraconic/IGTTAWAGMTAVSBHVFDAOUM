@@ -6735,6 +6735,11 @@ MonoBehaviour:
   projectileSpeed: 15
   muzzleFlash: {fileID: 131294729}
   playerRoot: {fileID: 579603956}
+  reloadPromptX: 0.5
+  reloadPromptY: 0.9
+  reloadPromptFontSize: 20
+  reloadPromptColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  reloadPromptBlinkInterval: 0.5
 --- !u!4 &2030384148
 Transform:
   m_ObjectHideFlags: 0

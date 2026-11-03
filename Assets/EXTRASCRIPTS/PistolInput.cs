@@ -19,6 +19,16 @@ public class PistolInput : MonoBehaviour
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private Transform playerRoot;
 
+
+    [Header("Reload Prompt")]
+    [SerializeField, Range(0f, 1f)] private float reloadPromptX = 0.5f;
+    [SerializeField, Range(0f, 1f)] private float reloadPromptY = 0.9f;
+    [SerializeField, Min(1)] private int reloadPromptFontSize = 16;
+    [SerializeField] private Color reloadPromptColor = Color.yellow;
+
+    [SerializeField, Min(0.05f)] private float reloadPromptBlinkInterval = 0.5f;
+    private float reloadPromptStartTime = -1f;
+
     private PistolWeapon pistol;
     private bool isReloading;
     private bool fireInputReady;
@@ -207,5 +217,37 @@ public class PistolInput : MonoBehaviour
 
         isReloading = false;
         fireInputReady = false;
+    }
+    private void OnGUI()
+    {
+        if (pistol == null || pistol.HasAmmo || isReloading)
+        {
+            reloadPromptStartTime = -1f;
+            return;
+        }
+
+        float now = Time.unscaledTime;
+
+        if (reloadPromptStartTime < 0f)
+            reloadPromptStartTime = now;
+
+        float interval = Mathf.Max(0.05f, reloadPromptBlinkInterval);
+        int blinkStep = Mathf.FloorToInt((now - reloadPromptStartTime) / interval);
+
+        if (blinkStep % 2 != 0)
+            return;
+
+        const string message = "R to reload";
+
+        var style = new GUIStyle(GUI.skin.label);
+        style.alignment = TextAnchor.MiddleCenter;
+        style.fontSize = reloadPromptFontSize;
+        style.normal.textColor = reloadPromptColor;
+
+        Vector2 size = style.CalcSize(new GUIContent(message));
+        float x = (Screen.width - size.x) * reloadPromptX;
+        float y = (Screen.height - size.y) * reloadPromptY;
+
+        GUI.Label(new Rect(x, y, size.x, size.y), message, style);
     }
 }
