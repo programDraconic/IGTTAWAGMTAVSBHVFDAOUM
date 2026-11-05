@@ -1,3 +1,5 @@
+// Created by ChatGPT using the existing EnemyController code as a base.
+
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -14,9 +16,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField, Min(0.01f)] private float attackCooldown = 1f;
     [SerializeField, Min(1)] private int attackDamage = 5;
 
-    private Rigidbody2D rb;
-    private EnemyState currentState;
+    // Keep the last facing direction when the player is almost directly above or below.
+    private const float FacingDeadZone = 0.05f;
 
+    private Rigidbody2D rb;
+    private SpriteRenderer enemySprite;
+    private EnemyState currentState;
     private float nextAttackTime = float.NegativeInfinity;
 
     public Transform Target => target;
@@ -33,13 +38,16 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        enemySprite = GetComponent<SpriteRenderer>();
 
+        // Let the enemy move freely in 2D without falling or spinning.
         rb.gravityScale = 0f;
         rb.freezeRotation = true;
     }
 
     private void OnEnable()
     {
+        // Reset the enemy when it is enabled.
         IsDead = false;
         nextAttackTime = float.NegativeInfinity;
 
@@ -49,11 +57,31 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         currentState?.Tick();
+        UpdateFacing();
     }
 
     private void FixedUpdate()
     {
+        // Run the current state's physics logic on the physics update.
         currentState?.FixedTick();
+    }
+
+    private void UpdateFacing()
+    {
+        if (IsDead || !HasTarget || enemySprite == null)
+        {
+            return;
+        }
+
+        float differenceX = target.position.x - transform.position.x;
+
+        if (Mathf.Abs(differenceX) <= FacingDeadZone)
+        {
+            return;
+        }
+
+        // The original sprite faces left. Flip it when the player is to the right.
+        enemySprite.flipX = differenceX > 0f;
     }
 
     public void SetTarget(Transform newTarget)
@@ -68,6 +96,7 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
+        // A dead enemy cannot return to chasing or attacking.
         if (IsDead && !(nextState is EnemyDeadState))
         {
             return;
@@ -86,9 +115,9 @@ public class EnemyController : MonoBehaviour
             return false;
         }
 
-        Vector2 offset =
-            (Vector2)target.position - rb.position;
+        Vector2 offset = (Vector2)target.position - rb.position;
 
+        // Compare squared distances to avoid taking a square root.
         return offset.sqrMagnitude <= attackRange * attackRange;
     }
 
@@ -100,8 +129,7 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        Vector2 direction =
-            (Vector2)target.position - rb.position;
+        Vector2 direction = (Vector2)target.position - rb.position;
 
         rb.linearVelocity = direction.normalized * moveSpeed;
     }
@@ -129,8 +157,7 @@ public class EnemyController : MonoBehaviour
             return false;
         }
 
-        nextAttackTime = Time.time +
-            Mathf.Max(0.01f, attackCooldown);
+        nextAttackTime = Time.time + Mathf.Max(0.01f, attackCooldown);
 
         // Preview the attack without changing player health.
         Debug.Log(
