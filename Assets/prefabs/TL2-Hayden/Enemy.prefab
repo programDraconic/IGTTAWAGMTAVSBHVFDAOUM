@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d29cbd09de12ff448893291d2251661f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Michael.Game::EnemyHealth
-  hitsToKill: 3
+  hitsToKill: 1
   crystalPrefab: {fileID: 3790844724482328560, guid: 065c4ef846114ee4681b6e7e8480ed22, type: 3}
   crystalDropTable: {fileID: 0}
   dropScatterRadius: 0.55

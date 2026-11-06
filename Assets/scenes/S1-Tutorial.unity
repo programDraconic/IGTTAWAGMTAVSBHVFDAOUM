@@ -5782,7 +5782,7 @@ MonoBehaviour:
     - {fileID: 1264888460}
     - {fileID: 1298467727}
     - {fileID: 1782046289}
-    spawnInterval: 1.5
+    spawnInterval: 1
     minDistanceFromPlayer: 4
     maxAlive: 20
     initialSpawnCount: 3
