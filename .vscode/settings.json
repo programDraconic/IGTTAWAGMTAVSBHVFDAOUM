@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "IGTTAWAGMTAVSBHVFDAOUM.slnx"
+    "dotnet.defaultSolution": "IGTTAWAGMTAVSBHVFDAOUM_copy.slnx"
 }

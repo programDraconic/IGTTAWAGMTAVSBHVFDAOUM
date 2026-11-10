@@ -1,6 +1,6 @@
 public class Friend : Suitor
 {
-    public Friend() : base("friend", "Sympathetic Sibling") { }
+    public Friend() : base("friend", "Sympathetic Shrimp") { }
 
     protected override int EvaluateTaste(Gift gift)
     {
@@ -10,7 +10,7 @@ public class Friend : Suitor
     protected override Reaction SelectReaction()
     {
         if (State.Stage >= RelationshipStage.Warm)
-            return new Reaction("\"Ignore Mother. I am rooting for you both.\"", Mood.Delighted);
-        return new Reaction("\"Oh! For me? That is very kind.\"", Mood.Pleased);
+            return new Reaction("\"*exaggerated shrimp noises*\"", Mood.Delighted);
+        return new Reaction("\"*even more exaggerated shrimp noises*\"", Mood.Pleased);
     }
 }

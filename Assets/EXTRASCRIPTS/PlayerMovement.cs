@@ -1,47 +1,57 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.InputSystem; // Required for the new Input System
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
 
     private Rigidbody2D rb;
-    private Vector2 moveInput;
+    private Animator animator;
+    private Vector2 movementInput;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (Keyboard.current == null)
-        {
-            moveInput = Vector2.zero;
-            return;
-        }
+        // Check if a keyboard is available
+        if (Keyboard.current == null) return;
 
-        var keyboard = Keyboard.current;
-        moveInput = Vector2.zero;
+        Vector2 movement = Vector2.zero;
 
-        if (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed)
-            moveInput.y += 1f;
+        // Check Horizontal Input (A/D or Left/Right Arrows)
+        if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
+            movement.x += 1f;
+        if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
+            movement.x -= 1f;
 
-        if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed)
-            moveInput.y -= 1f;
+        // Check Vertical Input (W/S or Up/Down Arrows)
+        if (Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed)
+            movement.y += 1f;
+        if (Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed)
+            movement.y -= 1f;
 
-        if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed)
-            moveInput.x += 1f;
+        // Normalize vector so diagonal movement isn't faster
+        movement = movement.normalized;
 
-        if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed)
-            moveInput.x -= 1f;
+        bool isMoving = movement.sqrMagnitude > 0.01f;
 
-        moveInput = moveInput.normalized;
+        // Send parameters to Animator
+
+        animator.SetFloat("MoveX", movement.x, 0.1f, Time.deltaTime);
+        animator.SetFloat("MoveY", movement.y, 0.1f, Time.deltaTime);
+        
+        // animator.SetBool("IsMoving", isMoving);
+
+        movementInput = movement;
     }
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = moveInput * moveSpeed;
+        // Move the player using physics
+        rb.MovePosition(rb.position + movementInput * moveSpeed * Time.fixedDeltaTime);
     }
 }

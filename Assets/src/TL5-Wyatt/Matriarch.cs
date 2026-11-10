@@ -1,6 +1,6 @@
 public class Matriarch : Suitor
 {
-    public Matriarch() : base("matriarch", "The Matriarch") { }
+    public Matriarch() : base("matriarch", "The Racist Shrimp Mom") { }
 
     protected override int EvaluateTaste(Gift gift)
     {
@@ -14,13 +14,13 @@ public class Matriarch : Suitor
         switch (State.Stage)
         {
             case RelationshipStage.Hostile:
-                return new Reaction("\"You are not family. Do not pretend otherwise.\"", Mood.Insulted);
+                return new Reaction("\"You are shrimpgusting. Do not pretend otherwise.\"", Mood.Insulted);
             case RelationshipStage.Tolerating:
-                return new Reaction("\"Hm. It is not nothing.\"", Mood.Annoyed);
+                return new Reaction("\"Hm. It is shrimpthing.\"", Mood.Annoyed);
             case RelationshipStage.Betrothed:
-                return new Reaction("\"...You may call me Mother. Once.\"", Mood.Pleased);
+                return new Reaction("\"...You may call me mothershrimper. Once.\"", Mood.Pleased);
             default:
-                return new Reaction("\"My son could have done worse. Marginally.\"", Mood.Neutral);
+                return new Reaction("\"I suppose my shrimpson could have done worse.\"", Mood.Neutral);
         }
     }
 }

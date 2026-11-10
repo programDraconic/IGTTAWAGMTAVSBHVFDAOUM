@@ -1,3 +1,6 @@
 {
-	"name": "Wyatt.Game"
+	"name": "Wyatt.Game",
+	"references": [
+		"Adam.Game"
+	]
 }

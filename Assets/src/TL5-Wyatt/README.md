@@ -86,3 +86,34 @@ and stage. The `relationshipState` field itself stays private, as drawn.
 `DatingController` is what TL1 calls. `UnlockEarned` is the "Publish Unlock
 Event" use case — F3 (Summons & Persistence) subscribes to it.
 `CaptureState()` / `RestoreState()` is what F3 persists.
+
+## Stress scene (TL3 Lecture 2)
+
+A dedicated scene, not a test method. Build it once from the Unity menu:
+
+**TL5 -> Create Dating Stress Scene**, which writes
+`Assets/tst/TL5-Wyatt/TL5_Dating_Stress.unity`. Reopen it later with
+**TL5 -> Open Dating Stress Scene**. Press Play and leave it alone - it escalates
+and detects its own break with no input.
+
+What it does:
+
+- Full 2D physics on. Gift bodies bounce inside a walled arena.
+- Every collision drives the real feature: `DatingController.OfferGift`.
+- Samples starting FPS first, then **doubles** the object count each cycle.
+- On-screen readout: Current Stress Point, Current FPS, Starting FPS and its
+  half-threshold, FPS Break Point, Physics Break Point, gifts processed, hardware.
+
+Two breaks are detected automatically:
+
+| Break | Detector |
+|---|---|
+| FPS | measured FPS falls to half the starting FPS |
+| Physics violation | a gift body tunnels through a wall and is found outside the arena |
+
+The FPS number is machine-dependent, so the readout and the final `Debug.Log`
+both name the hardware. Hand that number to TL6 for the phone build.
+
+The stress scene is a measurement, not a correctness check - it is designed to
+reach a break, so it is not in CI. CI runs the happy-path and failure-path tests
+in `Assets/tst/TL5-Wyatt/Tests/`.
