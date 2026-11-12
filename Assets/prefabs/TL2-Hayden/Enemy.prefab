@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 562240085544224170}
   - component: {fileID: 1128779797768176157}
   - component: {fileID: 8246948887361858000}
+  - component: {fileID: -4038076465154519638}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -233,6 +234,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -4038076465154519638}
+        m_TargetAssemblyTypeName: EnemyDeathEffects, TL3Assembly
+        m_MethodName: PlayDeathEffects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &8246948887361858000
 Animator:
   serializedVersion: 7
@@ -255,3 +268,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-4038076465154519638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480965079651196414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2793390352c5ad45a157ad8b108ba09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: TL3Assembly::EnemyDeathEffects
+  enemyRenderer: {fileID: 991642818891480136}
+  deathSprite: {fileID: 21300000, guid: a6c1b9f129d4bbf4ba2a3adfe6527a9a, type: 3}
+  pictureDuration: 5
+  pictureScale: 1.38
+  deathSound: {fileID: 8300000, guid: afeb27753b07f12428bc5341b03e2a24, type: 3}
+  volume: 0.7
